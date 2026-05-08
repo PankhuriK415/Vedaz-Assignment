@@ -32,6 +32,10 @@ const MyBookings = () => {
     fetchBookings();
   };
 
+  const handleDemoAccount = (demoEmail) => {
+    setEmail(demoEmail);
+  };
+
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
 
@@ -48,6 +52,12 @@ const MyBookings = () => {
         />
         <button type="submit">Fetch Bookings</button>
       </form>
+      <div style={{ marginTop: '20px' }}>
+        <h3>Demo Accounts:</h3>
+        <button onClick={() => handleDemoAccount('demo1@example.com')}>Demo Account 1 (Confirmed Booking)</button>
+        <button onClick={() => handleDemoAccount('demo2@example.com')}>Demo Account 2 (Pending Booking)</button>
+        <button onClick={() => handleDemoAccount('demo3@example.com')}>Demo Account 3 (Completed Booking)</button>
+      </div>
       <ul>
         {bookings.map(booking => (
           <li key={booking._id}>
