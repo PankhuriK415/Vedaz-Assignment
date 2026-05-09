@@ -6,6 +6,7 @@ const http = require('http');
 const { init } = require('./socket');
 const expertRoutes = require('./routes/experts');
 const bookingRoutes = require('./routes/bookings');
+const userRoutes = require('./routes/users');
 
 const app = express();
 const server = http.createServer(app);
@@ -19,6 +20,7 @@ app.use(cors());
 app.use(express.json());
 app.use('/experts', expertRoutes);
 app.use('/bookings', bookingRoutes);
+app.use('/users', userRoutes);
 
 io.on('connection', (socket) => {
   console.log('a user connected');
