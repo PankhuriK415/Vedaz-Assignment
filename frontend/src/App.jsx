@@ -11,7 +11,6 @@ import './App.css';
 
 function App() {
   const { user, logout } = useContext(UserContext);
-  const navigate = useNavigate();
 
   return (
     <Router>
