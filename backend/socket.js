@@ -4,7 +4,12 @@ let io;
 
 module.exports = {
   init: (server) => {
-    io = socketIo(server, { cors: { origin: "*" } });
+    io = socketIo(server, { 
+      cors: { 
+        origin: ['https://vedaz-assignment-pied.vercel.app', 'http://localhost:5173', 'http://localhost:3000'],
+        credentials: true
+      } 
+    });
     return io;
   },
   getIO: () => {

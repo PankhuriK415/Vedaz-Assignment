@@ -16,7 +16,10 @@ mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopol
   .then(() => console.log('MongoDB connected'))
   .catch(err => console.log(err));
 
-app.use(cors());
+app.use(cors({
+  origin: ['https://vedaz-assignment-pied.vercel.app', 'http://localhost:5173', 'http://localhost:3000'],
+  credentials: true
+}));
 app.use(express.json());
 app.use('/experts', expertRoutes);
 app.use('/bookings', bookingRoutes);
