@@ -14,7 +14,7 @@ const ExpertList = () => {
   const fetchExperts = async () => {
     setLoading(true);
     try {
-      const response = await axios.get('http://localhost:5001/experts', {
+      const response = await axios.get('https://vedaz-assignment-2.onrender.com/experts', {
         params: { page, limit: 10, category, name }
       });
       setExperts(response.data.experts);

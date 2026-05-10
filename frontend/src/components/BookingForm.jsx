@@ -24,7 +24,7 @@ const BookingForm = () => {
     setLoading(true);
     setError(null);
     try {
-      await axios.post('http://localhost:5001/bookings', {
+      await axios.post('https://vedaz-assignment-2.onrender.com/bookings', {
         expertId: id,
         date,
         timeSlot,

@@ -26,13 +26,13 @@ export const UserProvider = ({ children }) => {
   }, [user]);
 
   const login = async ({ email, password }) => {
-    const response = await axios.post('http://localhost:5001/users/login', { email, password });
+    const response = await axios.post('https://vedaz-assignment-2.onrender.com/users/login', { email, password });
     setUser(response.data);
     return response.data;
   };
 
   const register = async ({ name, email, password }) => {
-    const response = await axios.post('http://localhost:5001/users/register', { name, email, password });
+    const response = await axios.post('https://vedaz-assignment-2.onrender.com/users/register', { name, email, password });
     setUser(response.data);
     return response.data;
   };
