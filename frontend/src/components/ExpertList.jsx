@@ -29,7 +29,7 @@ const ExpertList = () => {
 
   useEffect(() => {
     fetchExperts();
-  }, [page, category, name]);
+  }, [page]);
 
   const handleSearch = (e) => {
     e.preventDefault();
