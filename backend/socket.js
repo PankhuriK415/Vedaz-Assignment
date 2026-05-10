@@ -6,7 +6,9 @@ module.exports = {
   init: (server) => {
     io = socketIo(server, { 
       cors: { 
-        origin: ['https://vedaz-assignment-pied.vercel.app', 'http://localhost:5173', 'http://localhost:3000'],
+        origin: function(origin, callback) {
+          return callback(null, true);
+        },
         credentials: true
       } 
     });
