@@ -28,25 +28,30 @@
   color: #2d3142;
 }
 
-.nav-links {
+..nav-links {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
   align-items: center;
 }
 
-.nav-links a,
+.nav-links .nav-button,
 .button.secondary {
   color: #5a4dff;
   font-weight: 600;
-  border: none;
-  background: transparent;
+  border: 1px solid #c7d2fe;
+  background: #eef2ff;
+  border-radius: 14px;
+  padding: 10px 16px;
   cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease;
 }
 
-.nav-links a:hover,
+.nav-links .nav-button:hover,
 .button.secondary:hover {
-  text-decoration: underline;
+  background: #dde6ff;
+  border-color: #a5b4fc;
+  text-decoration: none;
 }
 
 .page-content {

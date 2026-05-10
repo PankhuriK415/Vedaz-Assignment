@@ -11,6 +11,7 @@ import './App.css';
 
 function App() {
   const { user, logout } = useContext(UserContext);
+  const navigate = useNavigate();
 
   return (
     <Router>
@@ -18,10 +19,10 @@ function App() {
         <header className="topbar">
           <div className="brand">Vedaz Experts</div>
           <div className="nav-links">
-            <Link to="/">Experts</Link>
-            <Link to="/my-bookings">My Bookings</Link>
-            {!user && <Link to="/login">Login</Link>}
-            {!user && <Link to="/register">Create User</Link>}
+            <Link className="nav-button button secondary" to="/">Experts</Link>
+            <Link className="nav-button button secondary" to="/my-bookings">My Bookings</Link>
+            {!user && <Link className="nav-button button secondary" to="/login">Login</Link>}
+            {!user && <Link className="nav-button button secondary" to="/register">Create User</Link>}
             {user && <button className="button secondary" onClick={logout}>Logout</button>}
           </div>
         </header>
