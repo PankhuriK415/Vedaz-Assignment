@@ -15,7 +15,7 @@ const MyBookings = () => {
     }
     setLoading(true);
     try {
-      const response = await axios.get('https://vedaz-assignment-2.onrender.com/bookings', {
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/bookings`, {
         params: { email }
       });
       setBookings(response.data);

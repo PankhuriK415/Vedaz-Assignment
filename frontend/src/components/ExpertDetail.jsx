@@ -3,7 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 import io from 'socket.io-client';
 
-const socket = io('https://vedaz-assignment-2.onrender.com');
+const socket = io(import.meta.env.VITE_API_URL);
 
 const ExpertDetail = () => {
   const { id } = useParams();
@@ -13,7 +13,7 @@ const ExpertDetail = () => {
 
   const fetchExpert = async () => {
     try {
-      const response = await axios.get(`https://vedaz-assignment-2.onrender.com/experts/${id}`);
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/experts/${id}`);
       setExpert(response.data);
       setError(null);
     } catch (err) {

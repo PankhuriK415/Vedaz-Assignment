@@ -24,7 +24,7 @@ const BookingForm = () => {
     setLoading(true);
     setError(null);
     try {
-      await axios.post('https://vedaz-assignment-2.onrender.com/bookings', {
+      await axios.post(`${import.meta.env.VITE_API_URL}/bookings`, {
         expertId: id,
         date,
         timeSlot,
