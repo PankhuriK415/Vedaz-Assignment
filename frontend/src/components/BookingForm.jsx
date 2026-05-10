@@ -33,6 +33,7 @@ const BookingForm = () => {
       setSuccess(true);
       setTimeout(() => navigate('/my-bookings'), 2000);
     } catch (err) {
+      console.error("Booking Error:", err);
       setError(err.response?.data?.error || err.message);
     } finally {
       setLoading(false);

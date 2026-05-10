@@ -21,6 +21,7 @@ const Login = () => {
       await login(form);
       navigate('/');
     } catch (err) {
+      console.error("Login API Error:", err);
       setError(err.response?.data?.error || err.message);
     } finally {
       setLoading(false);
@@ -34,6 +35,7 @@ const Login = () => {
       await login({ email: demoEmail, password: 'demo123' });
       navigate('/');
     } catch (err) {
+      console.error("Demo Login API Error:", err);
       setError(err.response?.data?.error || err.message);
     } finally {
       setLoading(false);

@@ -21,6 +21,7 @@ const Register = () => {
       await register(form);
       navigate('/');
     } catch (err) {
+      console.error("Register API Error:", err);
       setError(err.response?.data?.error || err.message);
     } finally {
       setLoading(false);

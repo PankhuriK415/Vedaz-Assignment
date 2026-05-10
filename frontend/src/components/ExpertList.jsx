@@ -21,6 +21,7 @@ const ExpertList = () => {
       setTotalPages(response.data.totalPages);
       setError(null);
     } catch (err) {
+      console.error("Fetch Experts Error:", err);
       setError(err.message);
     } finally {
       setLoading(false);

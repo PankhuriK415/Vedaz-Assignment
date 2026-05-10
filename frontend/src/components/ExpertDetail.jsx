@@ -17,6 +17,7 @@ const ExpertDetail = () => {
       setExpert(response.data);
       setError(null);
     } catch (err) {
+      console.error("Fetch Expert Detail Error:", err);
       setError(err.message);
     } finally {
       setLoading(false);

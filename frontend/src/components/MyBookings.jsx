@@ -21,6 +21,7 @@ const MyBookings = () => {
       setBookings(response.data);
       setError(null);
     } catch (err) {
+      console.error("Fetch Bookings Error:", err);
       setError(err.message);
     } finally {
       setLoading(false);
