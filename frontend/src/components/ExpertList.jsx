@@ -37,38 +37,66 @@ const ExpertList = () => {
     fetchExperts();
   };
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
+  if (loading) return <div className="page">Loading...</div>;
+  if (error) return <div className="page">Error: {error}</div>;
 
   return (
-    <div>
-      <h1>Expert Listing</h1>
-      <form onSubmit={handleSearch}>
-        <input
-          type="text"
-          placeholder="Search by name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-        <select value={category} onChange={(e) => setCategory(e.target.value)}>
-          <option value="">All Categories</option>
-          <option value="Tech">Tech</option>
-          <option value="Business">Business</option>
-        </select>
-        <button type="submit">Search</button>
+    <div className="page">
+      <div className="page-header">
+        <div>
+          <h1>Expert Listing</h1>
+          <p>Find the right expert by category, name, or experience.</p>
+        </div>
+      </div>
+
+      <form className="form-grid" onSubmit={handleSearch}>
+        <label>
+          Search by name
+          <input
+            type="text"
+            placeholder="Search by name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+        </label>
+        <label>
+          Category
+          <select value={category} onChange={(e) => setCategory(e.target.value)}>
+            <option value="">All Categories</option>
+            <option value="Tech">Tech</option>
+            <option value="Business">Business</option>
+          </select>
+        </label>
+        <button className="button primary full-width" type="submit">Search</button>
       </form>
-      <ul>
+
+      <ul className="expert-list">
         {experts.map(expert => (
-          <li key={expert._id}>
-            <Link to={`/expert/${expert._id}`}>
-              {expert.name} - {expert.category} - Exp: {expert.experience} - Rating: {expert.rating}
+          <li key={expert._id} className="expert-card">
+            <Link to={`/expert/${expert._id}`} className="expert-link">
+              <div>
+                <strong>{expert.name}</strong>
+                <div className="expert-meta">
+                  <span>{expert.category}</span>
+                  <span>{expert.experience} years experience</span>
+                  <span>Rating {expert.rating}</span>
+                </div>
+              </div>
+              <span className="button secondary">View</span>
             </Link>
           </li>
         ))}
       </ul>
-      <button onClick={() => setPage(page - 1)} disabled={page === 1}>Previous</button>
-      <span>Page {page} of {totalPages}</span>
-      <button onClick={() => setPage(page + 1)} disabled={page === totalPages}>Next</button>
+
+      <div className="pagination-row">
+        <button className="button secondary" onClick={() => setPage(page - 1)} disabled={page === 1}>
+          Previous
+        </button>
+        <span>Page {page} of {totalPages}</span>
+        <button className="button secondary" onClick={() => setPage(page + 1)} disabled={page === totalPages}>
+          Next
+        </button>
+      </div>
     </div>
   );
 };

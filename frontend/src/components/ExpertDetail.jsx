@@ -37,31 +37,41 @@ const ExpertDetail = () => {
   if (error) return <div>Error: {error}</div>;
   if (!expert) return <div>Expert not found</div>;
 
-  const groupedSlots = expert.availableSlots.reduce((acc, slot) => {
-    const date = new Date(slot.date).toDateString();
-    acc[date] = slot.slots;
+  const groupedSlots = expert.availableSlots.reduce((acc, slotGroup) => {
+    const displayDate = new Date(slotGroup.date).toDateString();
+    acc[displayDate] = {
+      date: slotGroup.date,
+      slots: slotGroup.slots
+    };
     return acc;
   }, {});
 
   return (
-    <div>
-      <h1>{expert.name}</h1>
-      <p>Category: {expert.category}</p>
-      <p>Experience: {expert.experience} years</p>
-      <p>Rating: {expert.rating}</p>
-      <h2>Available Slots</h2>
-      {Object.entries(groupedSlots).map(([date, slots]) => (
-        <div key={date}>
-          <h3>{date}</h3>
-          <ul>
-            {slots.map(slot => (
-              <li key={slot}>
-                <Link to={`/book/${id}/${date}/${slot}`}>{slot}</Link>
-              </li>
-            ))}
-          </ul>
+    <div className="page">
+      <div className="page-header">
+        <div>
+          <h1>{expert.name}</h1>
+          <p>{expert.category} · {expert.experience} years · Rating {expert.rating}</p>
         </div>
-      ))}
+      </div>
+
+      <section>
+        <h2>Available Slots</h2>
+        {Object.entries(groupedSlots).map(([displayDate, { date, slots }]) => (
+          <div key={displayDate} className="slot-group">
+            <h3>{displayDate}</h3>
+            <ul>
+              {slots.map(slot => (
+                <li key={slot}>
+                  <Link className="slot-link" to={`/book/${id}/${date}/${slot}`}>
+                    {slot}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </section>
     </div>
   );
 };
