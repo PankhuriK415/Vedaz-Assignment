@@ -39,8 +39,9 @@ const ExpertDetail = () => {
 
   const groupedSlots = expert.availableSlots.reduce((acc, slotGroup) => {
     const displayDate = new Date(slotGroup.date).toDateString();
+    const dateKey = new Date(slotGroup.date).toISOString().slice(0, 10); // YYYY-MM-DD format
     acc[displayDate] = {
-      date: slotGroup.date,
+      date: dateKey,
       slots: slotGroup.slots
     };
     return acc;
@@ -63,7 +64,7 @@ const ExpertDetail = () => {
             <ul>
               {slots.map(slot => (
                 <li key={slot}>
-                  <Link className="slot-link" to={`/book/${id}/${date}/${slot}`}>
+                  <Link className="slot-link" to={`/book/${id}/${date}/${encodeURIComponent(slot)}`}>
                     {slot}
                   </Link>
                 </li>

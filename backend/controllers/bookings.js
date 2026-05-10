@@ -3,6 +3,14 @@ const Expert = require('../models/Expert');
 const User = require('../models/User');
 const { getIO } = require('../socket');
 
+const getDateKey = (value) => {
+  const date = new Date(value);
+  const year = date.getUTCFullYear();
+  const month = String(date.getUTCMonth() + 1).padStart(2, '0');
+  const day = String(date.getUTCDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
+};
+
 exports.createBooking = async (req, res) => {
   try {
     const { expertId, name, email, phone, date, timeSlot, notes } = req.body;
@@ -11,19 +19,14 @@ exports.createBooking = async (req, res) => {
       return res.status(400).json({ error: 'All fields are required' });
     }
 
-    const existingUser = await User.findOne({ email });
-    if (!existingUser) {
-      return res.status(401).json({ error: 'Login required to book' });
-    }
-
     const expert = await Expert.findById(expertId);
     if (!expert) {
       return res.status(404).json({ error: 'Expert not found' });
     }
 
-    const requestedDate = date;
+    const requestedDate = getDateKey(date);
     const daySlots = expert.availableSlots.find((s) => {
-      const slotDateString = new Date(s.date).toISOString().slice(0, 10);
+      const slotDateString = getDateKey(s.date);
       return slotDateString === requestedDate;
     });
 
