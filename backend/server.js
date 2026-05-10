@@ -17,9 +17,7 @@ mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopol
   .catch(err => console.log(err));
 
 app.use(cors({
-  origin: function(origin, callback) {
-    return callback(null, true);
-  },
+  origin: ['https://vedaz-assignment-six.vercel.app', 'http://localhost:5173', 'http://localhost:3000'],
   credentials: true
 }));
 app.use(express.json());
